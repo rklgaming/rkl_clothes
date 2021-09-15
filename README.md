@@ -1,3 +1,5 @@
+Vide : https://youtu.be/aFaBx-0E5-8
+
 Shared item in linden 
 
 label = 'TShirt',
