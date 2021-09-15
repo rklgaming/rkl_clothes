@@ -7,4 +7,5 @@ Config.removehelmet = -1
 Config.removeglasses = -1
 Config.removemask = -1
 Config.removetshirt = -1
+Config.removeears = -1
 Config.removebag = 0

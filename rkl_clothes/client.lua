@@ -36,6 +36,7 @@ AddEventHandler('clothes:ears', function(item, wait, cb)
     local metadata = ESX.GetPlayerData().inventory[item.slot].metadata
     local skin1 = metadata.accessories
     local skin2 = metadata.accessories2
+
     if GetPedPropIndex(player,2) == Config.removeears and not isanim  then
         isanim = true
         earsonoff()
@@ -369,6 +370,74 @@ end, false)
 
 
 
+RegisterNetEvent('clothes:watches')
+AddEventHandler('clothes:watches', function(item, wait, cb)
+   local player = PlayerPedId()
+   local metadata = ESX.GetPlayerData().inventory[item.slot].metadata
+   local skin1 = metadata.accessories
+   local skin2 = metadata.accessories2
+
+	if not watches then
+	watchesonoff()
+	Wait (600)
+	ClearPedSecondaryTask(player)
+	watches = true
+	SetPedPropIndex(player, 6, skin1, skin2, 0)
+	elseif watches then
+	watches = false
+	Wait (600)
+	ClearPedSecondaryTask(player)
+	ClearPedProp(player,6)
+	end
+end)
+
+
+RegisterNetEvent('clothes:chain')
+AddEventHandler('clothes:chain', function(item, wait, cb)
+   local player = PlayerPedId()
+   local metadata = ESX.GetPlayerData().inventory[item.slot].metadata
+   local skin1 = metadata.accessories
+   local skin2 = metadata.accessories2
+
+	if not chain then
+	chainonoff()
+	Wait (600)
+	ClearPedSecondaryTask(player)
+	chain = true
+	SetPedComponentVariation(player, 7, skin1, skin2, 0)
+	elseif chain then
+	chainonoff()
+	chain = false
+	Wait (600)
+	SetPedComponentVariation(player, 7, 0, 0, 2)
+	ClearPedProp(player,6)
+	end
+end)
+
+
+RegisterNetEvent('clothes:bracelet')
+AddEventHandler('clothes:bracelet', function(item, wait, cb)
+   local player = PlayerPedId()
+   local metadata = ESX.GetPlayerData().inventory[item.slot].metadata
+   local skin1 = metadata.accessories
+   local skin2 = metadata.accessories2
+
+	if not bracelet then
+	braceletonoff()
+	Wait (600)
+	ClearPedSecondaryTask(player)
+	bracelet = true
+	SetPedPropIndex(player, 7, skin1, skin2, 0)
+	elseif bracelet then
+	braceletonoff()
+	bracelet = false
+	Wait (600)
+	ClearPedSecondaryTask(player)
+	ClearPedProp(player,7)
+	end
+end)
+
+
 -- animation
 
 		function torsoonoff()
@@ -674,7 +743,107 @@ end, false)
                  
 			end
 			
+			function watchesonoff()
+			exports.rprogress:Custom({
+                    Async = true,
+                    x = 0.5,
+                    y = 0.5,
+                    From = 0,
+                    To = 100,
+                    Duration = 1000,
+                    Radius = 60,
+                    Stroke = 10,
+                    MaxAngle = 360,
+                    Rotation = 0,
+                    Easing = "easeLinear",
+                    Label = "",
+                    LabelPosition = "right",
+                    Color = "rgba(255, 255, 255, 1.0)",
+                    BGColor = "rgba(0, 0, 0, 0.4)",
+					
+                      
+						Animation = {
+                            --scenario = "WORLD_HUMAN_AA_SMOKE", -- https://pastebin.com/6mrYTdQv
+                            animationDictionary = "nmt_3_rcm-10", -- https://alexguirre.github.io/animations-list/
+                            animationName = "cs_nigel_dual-10",
+                        },
+						
+                    DisableControls = {
+                        Mouse = false,
+                        Player = false,
+                        Vehicle = false
+                    }                                
+                })
+                 
+			end
 			
+			function chainonoff()
+			exports.rprogress:Custom({
+                    Async = true,
+                    x = 0.5,
+                    y = 0.5,
+                    From = 0,
+                    To = 100,
+                    Duration = 1000,
+                    Radius = 60,
+                    Stroke = 10,
+                    MaxAngle = 360,
+                    Rotation = 0,
+                    Easing = "easeLinear",
+                    Label = "",
+                    LabelPosition = "right",
+                    Color = "rgba(255, 255, 255, 1.0)",
+                    BGColor = "rgba(0, 0, 0, 0.4)",
+					
+                      
+						Animation = {
+                            --scenario = "WORLD_HUMAN_AA_SMOKE", -- https://pastebin.com/6mrYTdQv
+                            animationDictionary = "clothingtie", -- https://alexguirre.github.io/animations-list/
+                            animationName = "try_tie_positive_a",
+                        },
+						
+                    DisableControls = {
+                        Mouse = false,
+                        Player = false,
+                        Vehicle = false
+                    }                                
+                })
+                 
+			end
+			
+			function braceletonoff()
+			exports.rprogress:Custom({
+                    Async = true,
+                    x = 0.5,
+                    y = 0.5,
+                    From = 0,
+                    To = 100,
+                    Duration = 1000,
+                    Radius = 60,
+                    Stroke = 10,
+                    MaxAngle = 360,
+                    Rotation = 0,
+                    Easing = "easeLinear",
+                    Label = "",
+                    LabelPosition = "right",
+                    Color = "rgba(255, 255, 255, 1.0)",
+                    BGColor = "rgba(0, 0, 0, 0.4)",
+					
+                      
+						Animation = {
+                            --scenario = "WORLD_HUMAN_AA_SMOKE", -- https://pastebin.com/6mrYTdQv
+                            animationDictionary = "nmt_3_rcm-10", -- https://alexguirre.github.io/animations-list/
+                            animationName = "cs_nigel_dual-10",
+                        },
+						
+                    DisableControls = {
+                        Mouse = false,
+                        Player = false,
+                        Vehicle = false
+                    }                                
+                })
+                 
+			end
 			
 			function glassesonoff()
 			exports.rprogress:Custom({
